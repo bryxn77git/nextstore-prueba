@@ -1,0 +1,10 @@
+services:
+  nextstoredb:
+    image: mongo:5.0.0
+    container_name: nextstore-database
+    ports:
+      - 27018:27017
+    volumes:
+      - ./mongo:/data/db
+
+      
