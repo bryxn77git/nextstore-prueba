@@ -35,6 +35,7 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
             display='flex' 
             justifyContent='center'
             className="home-grid"
+            minHeight='calc(100vh - 200px)'
         >
 
        

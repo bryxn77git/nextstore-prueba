@@ -438,54 +438,63 @@ const Producto: NextPage<Props> = ({ product, brand, relatedProducts }) => {
                 </Grid>
                 
 
-                <Divider sx={{ mt: 5, mb: 5, width: '100%'}}/> 
+
+                {
+                    relatedProducts.length > 0 && (
+                        
+                        <>
+                        <Divider sx={{ mt: 5, mb: 5, width: '100%'}}/> 
+
+                        <Grid item xs={12} sx={{ mb: 5 }} >
+                            <Box display='flex' justifyContent='center'>
+                                <Typography variant={subTitleSize} fontWeight={800} color='text.primary'>Productos relacionados</Typography>
+
+                            </Box>
+                            <Box display='flex' justifyContent='center'>
+                                <Divider sx={{ mt: 1, mb: 1, height: 5, borderRadius: 90, width: { xs: 153, md: 215 } }}/> 
+
+                            </Box>
+                        </Grid>
+
+                        <Grid container spacing={1} display='flex' justifyContent='center'>
+                            {
+                                relatedProducts.map( (product, index) => ( 
+                                    <Grid key={index} item xs={6} md={3} justifyContent='center' display='flex'>
+                                        <Card elevation={0}>
+                                            <NextLink href={`/producto/${ product.slug }`} passHref>
+                                                <Link>
+                                                    <CardActionArea sx={{ borderRadius: '5px', minHeight: { xs: 200, sm: 255, md: 280} } } className='card-img'>
+                                                        <CardMedia  
+                                                            component='img'
+                                                            alt={ product.title }
+                                                            image={ product.img[0] }
+                                                            sx={{ width: {xs: 168, sm: 200, md: 220}, maxHeight: 340}}
+                                                            className='img-zoom fadeIn'
+                                                            
+                                                        />
+                                                    </CardActionArea>
+                                                </Link>
+                                            </NextLink>
+                                            <CardContent sx={{ textAlign: 'center'}} className="fadeIn" >
+                                                <Tooltip title={product.title} placement="top" arrow>
+                                                    <Typography variant='body1' fontSize={{xs: 10, sm: '1rem' }}>
+                                                        {
+                                                            product.title.length < 25 ? product.title.charAt(0).toLocaleUpperCase() + product.title.slice(1) : (product.title.charAt(0).toLocaleUpperCase() + product.title.slice(1)).substring(0, 25) + '...' 
+                                                        }
+                                                    </Typography>
+
+                                                </Tooltip>
+                                                <LinkButton href='/' title={ product.marca.charAt(0).toLocaleUpperCase() + product.marca.slice(1) }  />
+                                            </CardContent>
+                                            </Card>
+                                    </Grid>
+                                ))
+                            }
+                        </Grid>
+                        </>
+                    )
+                }
                 
-                <Grid item xs={12} sx={{ mb: 5 }} >
-                    <Box display='flex' justifyContent='center'>
-                        <Typography variant={subTitleSize} fontWeight={800} color='text.primary'>Productos relacionados</Typography>
-
-                    </Box>
-                    <Box display='flex' justifyContent='center'>
-                        <Divider sx={{ mt: 1, mb: 1, height: 5, borderRadius: 90, width: { xs: 153, md: 215 } }}/> 
-
-                    </Box>
-                </Grid>
-
-                <Grid container spacing={1} display='flex' justifyContent='center'>
-                    {
-                        relatedProducts.map( (product, index) => ( 
-                            <Grid key={index} item xs={6} md={3} justifyContent='center' display='flex'>
-                                <Card elevation={0}>
-                                    <NextLink href={`/producto/${ product.slug }`} passHref>
-                                        <Link>
-                                            <CardActionArea sx={{ borderRadius: '5px', minHeight: { xs: 200, sm: 255, md: 280} } } className='card-img'>
-                                                <CardMedia  
-                                                    component='img'
-                                                    alt={ product.title }
-                                                    image={ product.img[0] }
-                                                    sx={{ width: {xs: 168, sm: 200, md: 220}, maxHeight: 340}}
-                                                    className='img-zoom fadeIn'
-                                                    
-                                                />
-                                            </CardActionArea>
-                                        </Link>
-                                    </NextLink>
-                                    <CardContent sx={{ textAlign: 'center'}} className="fadeIn" >
-                                        <Tooltip title={product.title} placement="top" arrow>
-                                            <Typography variant='body1' fontSize={{xs: 10, sm: '1rem' }}>
-                                                {
-                                                    product.title.length < 25 ? product.title.charAt(0).toLocaleUpperCase() + product.title.slice(1) : (product.title.charAt(0).toLocaleUpperCase() + product.title.slice(1)).substring(0, 25) + '...' 
-                                                }
-                                            </Typography>
-
-                                        </Tooltip>
-                                        <LinkButton href='/' title={ product.marca.charAt(0).toLocaleUpperCase() + product.marca.slice(1) }  />
-                                    </CardContent>
-                                    </Card>
-                            </Grid>
-                        ))
-                    }
-                </Grid>
 
                 <ProductAddedToCart product={tempCartProduct} />
 

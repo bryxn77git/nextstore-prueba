@@ -1,4 +1,4 @@
-import { RemoveShoppingCart } from "@mui/icons-material"
+import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
 import { Box, Link, Typography } from "@mui/material"
 import { ShopLayout } from "../../components/layouts"
 import { LinkButton } from '../../components/ui'
@@ -16,9 +16,9 @@ const EmptyPage = () => {
             height='calc(100vh - 200px)'
             sx={{ flexDirection: { xs: 'column', sm: 'row'}, }}
         >
-            <RemoveShoppingCart sx={{ fontSize: 100 }} color='primary' />
+            <RequestQuoteOutlinedIcon sx={{ fontSize: 100 }} color='primary' />
             <Box display='flex' flexDirection='column' alignItems='center'>
-                <Typography color='text.secondary' fontWeight={500}>Su cotización esta vacia</Typography>
+                <Typography color='text.secondary' fontWeight={500}>Su cotización está vacía</Typography>
                 
                     <LinkButton href={'/'} title={'Regresar'} size={25} />
 
