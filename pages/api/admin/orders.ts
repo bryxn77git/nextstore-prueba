@@ -27,14 +27,24 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
 const getOrders = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
     
-    await db.connect();
-    const orders = await Order.find()
-        .sort({ createdAt: 'desc' })
-        .populate('user', 'name email')
-        .lean();
-    await db.disconnect();
+    try {
+        
+        await db.connect();
+        const orders = await Order.find()
+            .sort({ createdAt: 'desc' })
+            .populate('user', 'name email')
+            .lean();
+        await db.disconnect();
+    
+        if(orders.length > 0 ){
+            return res.status(200).json( orders )
+        } else{
+            return res.status(404).json({ message: 'no hay ordenes'})
+        }
 
-    return res.status(200).json( orders )
+    } catch (error) {
+        return res.status(500).json({ message: 'error de la request' })
+    }
 
 }
 

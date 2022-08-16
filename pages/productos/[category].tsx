@@ -115,7 +115,7 @@ const Categoria = () => {
 
   useEffect(() => {
     if( router.isReady ){
-      router.push(`${category.toLocaleLowerCase()}?sort=${sort}&brands=${brandsSelected.toString() || 'all'}&sizes=${sizesSelected.toString() || 'all'}&colors=${colorSelected.toString() || 'all'}&page=${page}`);
+      router.replace(`${category.toLocaleLowerCase()}?sort=${sort}&brands=${brandsSelected.toString() || 'all'}&sizes=${sizesSelected.toString() || 'all'}&colors=${colorSelected.toString() || 'all'}&page=${page}`);
 
     }
     

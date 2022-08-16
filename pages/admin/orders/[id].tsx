@@ -72,7 +72,6 @@ const OrderPage: NextPage<Props> = ({ order }) => {
 
     const onStateUpdated = async( newStatus: string ) => {
 
-        console.log(newStatus)
         setOrderState(newStatus);
 
         try {

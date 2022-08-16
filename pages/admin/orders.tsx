@@ -4,6 +4,7 @@ import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import useSWR from 'swr';
 
 import { AdminLayout } from '../../components/layouts'
+import { FullScreenLoading } from '../../components/ui';
 import { IOrder, IUser } from '../../interfaces';
 
 
@@ -83,12 +84,19 @@ const OrdersPage = () => {
     >
          <Grid container className='fadeIn'>
             <Grid item xs={12} sx={{ minHeight:'calc(100vh - 250px)', width: '100%' }}>
-                <DataGrid 
-                    rows={ rows }
-                    columns={ columns }
-                    pageSize={ 10 }
-                    rowsPerPageOptions={ [10] }
-                />
+                {
+                    data ? (
+                        <DataGrid 
+                            rows={ rows }
+                            columns={ columns }
+                            pageSize={ 10 }
+                            rowsPerPageOptions={ [10] }
+                        />
+                        
+                    ) : (
+                        <FullScreenLoading />
+                    )
+                }
 
             </Grid>
         </Grid>

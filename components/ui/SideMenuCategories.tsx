@@ -45,7 +45,7 @@ export const SideMenuCategorias = () => {
                 <Divider sx={{display: { xs: '', sm: 'none' }}} />
                 
                 {
-                    categoriesMenu !== [] ? (
+                    categoriesMenu.length > 0 ? (
                         categoriesMenu.map( category => {
                             return( 
                             <ListItemButton key={ category.name } onClick={ () => navigateTo( `/productos/${ category.name.toLocaleLowerCase() }` ) }>

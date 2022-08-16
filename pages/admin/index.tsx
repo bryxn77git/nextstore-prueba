@@ -14,6 +14,7 @@ import { Grid, Typography, Box, Card } from '@mui/material';
 import { SummaryTile } from '../../components/admin'
 import { DashboardSummaryResponse } from '../../interfaces';
 import { Chart } from "react-google-charts";
+import { FullScreenLoading } from '../../components/ui';
 
 
 const DashboardPage = () => {
@@ -68,7 +69,8 @@ const DashboardPage = () => {
 
     if ( error ){
 
-        return <Typography>Error al cargar la información</Typography>
+        return <FullScreenLoading />
+
     }
 
 
